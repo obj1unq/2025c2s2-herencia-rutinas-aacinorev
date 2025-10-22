@@ -1,16 +1,71 @@
+import src.personas.*
 import gimnasia.*
 
-describe "rutinas" {
+// Rutinas
+	const correrEnLaPlaya = new Running(intensidad = 1.2)
+	const remarEnElDelta = new Remo()
+	const remarEnCaminoRemeros = new RemoCompeticion()
+	const maratonBA = new Maraton(intensidad = 1.5)
+// Personas
+	const calamardo = new PersonaSedentaria(peso = 60, tiempo = 5)
+	const calamardoBajoPeso = new PersonaSedentaria(peso = 40, tiempo = 5)
+	const bob = new PersonaAtleta(peso = 40)
 
-//Punto 1: rutinas
-//	const correrEnLaPlaya = // Una actividad de running con intensisdad 1.2
-//	const remarEnElDelta = // Una actividad de remo
-//	const remarEnCaminoRemeros = // Una actividad de remo comptetitivo
-//	const maratonBA = //Una maraton con intensidad 1.5
+describe "Punto 1: rutinas"{
+	test "Corre en la playa en 5 y 90 minutos"{
+		assert.equals(360, correrEnLaPlaya.calorias(5))
+		assert.equals(10200, correrEnLaPlaya.calorias(90))
+	}
+		
+	test "Remar en el delta en 5 y 90 minutos"{
+		assert.equals(520, remarEnElDelta.calorias(5))
+		assert.equals(9360, remarEnElDelta.calorias(90))
+	}
 
-//Punto 2: personas
-	//const calamardo = //Una persona Sedentaria con peso 60 y tiempo de ejercicio 5
- 	//const bob =  // Una persona atleta con peso 40 
+	test "Remar en Camino Remeros en 5 y 90 minutos"{
+		assert.equals(510, remarEnCaminoRemeros.calorias(5))
+		assert.equals(12750, remarEnCaminoRemeros.calorias(90))
+	}
+
+	test "Maraton BA en 5 y 90 minutos"{
+		assert.equals(900, maratonBA.calorias(5))
+		assert.equals(25500, maratonBA.calorias(90))
+	}
+}
+
+describe "Punto 2: personas"{
+	// Persona sedentaria
+	test "Calamardo corre en la playa"{
+		calamardo.hacerRutina(correrEnLaPlaya)
+		assert.equals(39.725, calamardo.peso().truncate(3))
+	}
+
+	test "Calamardo no puede correr en la playa"{
+		assert.throwsException({ calamardoBajoPeso.hacerRutina(correrEnLaPlaya) })
+	}
+	//COMPLETAR CALAMARDO........
+
+	// Persona atleta
+	test "Bob corre en la playa"{
+		bob.hacerRutina(correrEnLaPlaya)
+		assert.equals(39.725, bob.peso().truncate(3))
+	}
+
+	test "Bob rema en el delta"{
+		assert.throwsException({bob.hacerRutina(remarEnElDelta)})
+	}
+
+	test "Bob corre la maraton BA"{
+		bob.hacerRutina(maratonBA)
+		assert.equals(37.812, bob.peso().truncate(3))
+	}
+
+	test "Bob rema en el camino de los remeros"{
+		bob.hacerRutina(remarEnCaminoRemeros)
+		assert.equals(39.406, bob.peso().truncate(3))
+	}
+}
+
 
 //Punto 3: clubes
 	//const recreo = //un predio con correrEnLaPlaya y maratonBA
@@ -105,4 +160,3 @@ describe "rutinas" {
 //		//Las rutinas más exigentes del clubBarrial para calamardo son maratonBA y remarEnElDelta
 //	}
 	
-}
