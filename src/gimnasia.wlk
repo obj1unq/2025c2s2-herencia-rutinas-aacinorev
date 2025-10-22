@@ -2,8 +2,8 @@ class Rutina {
     method calorias(tiempo){
         return 100 * (tiempo - self.descanso(tiempo)) * self.intensidad()
     }
-    method descanso(tiempo) = 0
-    method intensidad() = 0
+    method descanso(tiempo)
+    method intensidad()
 }
 
 class Running inherits Rutina {

@@ -127,7 +127,7 @@ un kilo menos que el resto de las personas
 
 - Solo realizan una rutina si las calorías que consumiría al realizarla es mayor a 10000
 
-**Ejemplos**:
+**Ejemplos**: 
 
 Bob es una persona atleta de peso 40 
 
